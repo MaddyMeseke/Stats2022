@@ -1,0 +1,79 @@
+---
+title: "Constants and Variables - Tracking"
+author: "Who are you?"
+date: "2022-08-26"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(wordcloud2)
+```
+
+## Constants and Variables
+
+Go to <http://www.fark.com/dawww>.
+
+Population: Hawkeye Football Tackles.
+
+Constants: Every entry is guaranteed to have four pieces: football, tackles
+
+Variables: types of tackles and who tackled who
+
+ESPN Internet Ventures. (n.d.). 2022 Iowa Hawkeyes player stats. ESPN. Retrieved September 6, 2022, from https://www.espn.com/college-football/team/stats/_/id/2294/iowa-hawkeyes
+
+
+
+```{r data gathering}
+dawwww_comments <- 
+  c(11,6,5,4,4,4,4,3,2,2,1,1,1,1,1)
+summary (dawwww_comments)
+
+
+```
+
+## Visualize
+
+```{r visualize}
+dawwww_data <- 
+    data.frame(dawwww_comments)
+
+dawwww_data %>% 
+    ggplot( mapping = 
+              aes(x=dawwww_comments)
+    ) + 
+  geom_boxplot(fill = "yellow")
+
+dawwww_data %>% 
+    ggplot( mapping = 
+              aes(x=dawwww_comments)
+    ) + 
+  geom_histogram(fill="green")
+
+dawwww_data %>% 
+    ggplot( mapping = 
+              aes(x=dawwww_comments)
+    ) + 
+  geom_density(fill = "blue")
+
+```
+
+## Words
+
+```{r words}
+dawwww_sources <-
+  c("twitter",  "twitter", "mirror", "upi.com", "the dodo", "twitter", "10tv.com", "He's", "a", "good", "boy", "give", "him", "a", "snack", "doggie", "treats", "available", "at", "Krispy", "Kreme", "for", "National", "Dog", "Day", "tomorrow")
+
+dawwww_words <- 
+  dawwww_sources %>% 
+    table()
+
+dawwww_words %>% 
+  wordcloud2(size=0.5)
+
+```
+
+Go to <https://r-graph-gallery.com/> to see a variety of other visualization options in R.
